@@ -1,0 +1,37 @@
+from collections import deque
+def bfs(graph, start, goal):
+visited = set([start]) # tracks all discovered nodes
+queue = deque([start]) # FIFO queue of nodes to process
+parent = {start: None} # used to reconstruct the path
+print(f"Starting BFS from '{start}' to find goal '{goal}'\n")
+while queue:
+current = queue.popleft() # remove front of queue
+print(f"Visiting node: {current}")
+if current == goal:
+print(f"\nGoal '{goal}' found!")
+# reconstruct path using parent pointers
+path = []
+node = current
+while node is not None:
+path.append(node)
+node = parent[node]
+path.reverse()
+return path
+for neighbor in graph[current]:
+if neighbor not in visited:
+visited.add(neighbor)
+parent[neighbor] = current
+queue.append(neighbor)
+print(f" Discovered new node: {neighbor}")
+return None # goal not reachable
+# Graph representation: person -> list of direct friends
+graph = {
+'A': ['B', 'C'],
+'B': ['A', 'D', 'E'],
+'C': ['A', 'F'],
+'D': ['B'],
+'E': ['B', 'F'],
+'F': ['C', 'E']
+}
+result_path = bfs(graph, 'A', 'F')
+print("\nBFS Path from A to F:", " -> ".join(result_path))

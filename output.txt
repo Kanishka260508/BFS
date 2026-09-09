@@ -1,0 +1,14 @@
+Starting BFS from 'A' to find goal 'F'
+Visiting node: A
+Discovered new node: B
+Discovered new node: C
+Visiting node: B
+Discovered new node: D
+Discovered new node: E
+Visiting node: C
+Discovered new node: F
+Visiting node: D
+Visiting node: E
+Visiting node: F
+Goal 'F' found!
+BFS Path from A to F: A -> C -> F
